@@ -7,7 +7,8 @@ from argparse import ArgumentParser
 
 from openai import OpenAI
 
-from computer_use import ComputerUseAgent, llm_settings
+from computer_use.computer_use import ComputerUseAgent
+from computer_use.settings import llm_settings
 
 log = getLogger("computer-use-logger")
 
@@ -31,27 +32,12 @@ parser.add_argument(
     action="store_true",
     help="print verbose messages; warnings and errors.",
 )
-parser.add_argument(
-    "-vv",
-    "--very-verbose",
-    action="store_true",
-    help="print very verbose messages; debug, warnings, errors.",
-)
-parser.add_argument(
-    "-vvv",
-    "--very-very-verbose",
-    action="store_true",
-    help="print very, very verbose messages; print all from -vv and more, including API response.",
-)
 
 if __name__ == "__main__":
     import sys
 
-    log.debug(parser.parse_args())
+    args = parser.parse_args()
+    log.debug(args)
     log.debug("API Key: " + llm_settings.openai_api_key)
 
-    print()
-
-    agent = ComputerUseAgent(client)
-
-    agent.run("open chrome and google weather in SF")
+    agent = ComputerUseAgent(client, args.prompt)

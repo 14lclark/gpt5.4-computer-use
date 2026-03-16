@@ -1,4 +1,2 @@
-from .computer_use import ComputerUseAgent
-from .settings import LLMSettings
-
-llm_settings = LLMSettings()
+from . import computer_use
+from . import settings

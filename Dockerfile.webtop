@@ -1,0 +1,6 @@
+FROM linuxserver/webtop:latest
+
+RUN apk add python3 --repository=http://dl-cdn.alpinelinux.org/alpine/edge/main
+RUN apk add screengrab
+
+RUN mkdir /config/agent

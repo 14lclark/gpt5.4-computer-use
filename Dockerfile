@@ -4,9 +4,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN echo "Acquire::http::Pipeline-Depth 0; Acquire::http::No-Cache true; Acquire::BrokenProxy true;" >> /etc/apt/apt.conf.d/99fixbadproxy
 RUN apt-get update 
-RUN apt-get update 
-RUN apt-get install -y xfce4 xfce4-goodies x11vnc xvfb xdotool imagemagick x11-apps sudo software-properties-common firefox-esr && \
-    apt-get remove -y light-locker xfce4-screensaver xfce4-power-manager || true  && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y xfce4
+RUN apt-get install -y xfce4-goodies x11vnc xvfb xdotool imagemagick x11-apps sudo software-properties-common firefox-esr && apt-get remove -y light-locker xfce4-screensaver xfce4-power-manager || true  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash agent-user     && echo "agent-user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 # USER agent-user
